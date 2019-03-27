@@ -9,11 +9,10 @@
         <!--Bootstrap Table CSS-->
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
         <!--Bootstrap table extension - filter control-->
-        <link rel="stylesheet" type="text/css" href="/static/bootstrap_table/extensions/filter-control/bootstrap-table-filter-control.css">
-        <script src="/static/bootstrap_table/extensions/filter-control/bootstrap-table-filter-control.js"></script>
-        <!--Bootstrap table extension mobile-->
-        <script src="/static/bootstrap_table/extensions/mobile/bootstrap-table-mobile.js"></script>
-        <!-- Self defined CSS -->
+        <link rel="stylesheet" type="text/css" href="/bootstrap_table/bootstrap-table-filter-control.css">
+        <!--Bootstrap-select css-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+        <!-- Sidebar CSS -->
         <link rel="stylesheet" href="/webpage/sidebar.css">
         
         <!--jQuery-->
@@ -27,6 +26,14 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         <!--Bootstrap Table-->
         <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+        <!--Bootstrap table extension - filter control-->
+        <script src="/bootstrap_table/bootstrap-table-filter-control.js"></script>
+        <!--Bootstrap table extension mobile-->
+        <script src="/bootstrap_table/bootstrap-table-mobile.js"></script>
+
+        <!--Bootstrap-select js-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -43,10 +50,10 @@
                             <ul class="nav navbar-nav mr-auto">
 
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#"><span>Home<i class="fas fa-angle-right ml-2"></i></span></a>
+                                    <a class="nav-link" href="/"><span>Home<i class="fas fa-angle-right ml-2"></i></span></a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#"><span>Add Task</span></a>
+                                    <a class="nav-link" href="/task_update"><span>Add Task Update</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -55,9 +62,9 @@
                                 Task Reporting System
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-dark" href="#">Task Reporting System</a>
+                                <a class="dropdown-item text-dark" href="/">Task Reporting System</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-dark" href="#">Project Info Database</a>
+                                <a class="dropdown-item text-dark" href="http://192.168.0.193:200">Deal Updates Database</a>
                             </div>
                         </div>
                         <span class="nav-item ml-auto">
@@ -69,15 +76,15 @@
             <nav id="sidebar">
                 <ul class="list-unstyled components">
                     <li>
-                        <a href="#" class="text-dark">
-                            <i class="fas fa-edit"></i>
-                            Add Update
+                        <a href="/" class="text-dark">
+                            <i class="fas fa-clipboard-list"></i>
+                                Manage Tasks
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-dark">
-                            <i class="fas fa-clipboard-list"></i>
-                             Manage Tasks
+                        <a href="/task_update" class="text-dark">
+                            <i class="fas fa-edit"></i>
+                            Add Update
                         </a>
                     </li>
                     <li>
@@ -123,17 +130,20 @@
                                                 <div class="row">
                                                     <div class="col-1">
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-2">
                                                         Task Name
                                                     </div>
                                                     <div class="col-2">
                                                         Update Type
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-2">
+                                                        Urgency 
+                                                    </div>
+                                                    <div class="col-3">
                                                         Details
                                                     </div>
                                                     <div class="col-2 pl-0 text-right">
-                                                        <button class="btn btn-success btn-sm" type="button">
+                                                        <button class="btn btn-info btn-sm" type="button">
                                                             Add Field
                                                         </button>
                                                     </div>
@@ -142,13 +152,34 @@
                                                     <div class="col-1">
                                                         1
                                                     </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control" id="taskName">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">05Deal tax matter_Tax advice_Project</option>
+                                                            <option value="invested">05Tax - Inv or Fund_COPT1 liquidation_Project</option>
+                                                            <option value="follow">06Compliance checking_Lippo checking_AdHocOneOff</option>
+                                                            <option value="follow">08Valn Mtg_Valn mtg_Project</option>
+                                                            <option value="follow">09ASM books_2018Q3 Mgt Rpt_Perpetual</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="updateType">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">Start End</option>
+                                                            <option value="invested">More Time Spent Generally</option>
+                                                            <option value="follow">New Dev</option>
+                                                            <option value="follow">Other</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">H</option>
+                                                            <option value="invested">M</option>
+                                                            <option value="follow">L</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4 pr-0">
                                                         <textarea type="text" class="form-control" id="details" rows="1"></textarea>
                                                     </div>
                                                     <div class="col-1 pl-0">
@@ -161,13 +192,34 @@
                                                     <div class="col-1">
                                                         2
                                                     </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control" id="taskName">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">05Deal tax matter_Tax advice_Project</option>
+                                                            <option value="invested">05Tax - Inv or Fund_COPT1 liquidation_Project</option>
+                                                            <option value="follow">06Compliance checking_Lippo checking_AdHocOneOff</option>
+                                                            <option value="follow">08Valn Mtg_Valn mtg_Project</option>
+                                                            <option value="follow">09ASM books_2018Q3 Mgt Rpt_Perpetual</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="updateType">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">Start End</option>
+                                                            <option value="invested">More Time Spent Generally</option>
+                                                            <option value="follow">New Dev</option>
+                                                            <option value="follow">Other</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">H</option>
+                                                            <option value="invested">M</option>
+                                                            <option value="follow">L</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4 pr-0">
                                                         <textarea type="text" class="form-control" id="details" rows="1"></textarea>
                                                     </div>
                                                     <div class="col-1 pl-0">
@@ -180,13 +232,34 @@
                                                     <div class="col-1">
                                                         3
                                                     </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control" id="taskName">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">05Deal tax matter_Tax advice_Project</option>
+                                                            <option value="invested">05Tax - Inv or Fund_COPT1 liquidation_Project</option>
+                                                            <option value="follow">06Compliance checking_Lippo checking_AdHocOneOff</option>
+                                                            <option value="follow">08Valn Mtg_Valn mtg_Project</option>
+                                                            <option value="follow">09ASM books_2018Q3 Mgt Rpt_Perpetual</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="updateType">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">Start End</option>
+                                                            <option value="invested">More Time Spent Generally</option>
+                                                            <option value="follow">New Dev</option>
+                                                            <option value="follow">Other</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">H</option>
+                                                            <option value="invested">M</option>
+                                                            <option value="follow">L</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4 pr-0">
                                                         <textarea type="text" class="form-control" id="details" rows="1"></textarea>
                                                     </div>
                                                     <div class="col-1 pl-0">
@@ -209,17 +282,20 @@
                                                 <div class="row">
                                                     <div class="col-1">
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-2">
                                                         Task Name
                                                     </div>
                                                     <div class="col-2">
                                                         Update Type
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-2">
+                                                        Urgency
+                                                    </div>
+                                                    <div class="col-3">
                                                         Details
                                                     </div>
                                                     <div class="col-2 pl-0 text-right">
-                                                        <button class="btn btn-success btn-sm" type="button">
+                                                        <button class="btn btn-info btn-sm" type="button">
                                                             Add Field
                                                         </button>
                                                     </div>
@@ -228,13 +304,34 @@
                                                     <div class="col-1">
                                                         1
                                                     </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control" id="taskName">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">05Deal tax matter_Tax advice_Project</option>
+                                                            <option value="invested">05Tax - Inv or Fund_COPT1 liquidation_Project</option>
+                                                            <option value="follow">06Compliance checking_Lippo checking_AdHocOneOff</option>
+                                                            <option value="follow">08Valn Mtg_Valn mtg_Project</option>
+                                                            <option value="follow">09ASM books_2018Q3 Mgt Rpt_Perpetual</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="updateType">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">Start End</option>
+                                                            <option value="invested">More Time Spent Generally</option>
+                                                            <option value="follow">New Dev</option>
+                                                            <option value="follow">Other</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">H</option>
+                                                            <option value="invested">M</option>
+                                                            <option value="follow">L</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4 pr-0">
                                                         <textarea type="text" class="form-control" id="details" rows="1"></textarea>
                                                     </div>
                                                     <div class="col-1 pl-0">
@@ -247,13 +344,34 @@
                                                     <div class="col-1">
                                                         2
                                                     </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control" id="taskName">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">05Deal tax matter_Tax advice_Project</option>
+                                                            <option value="invested">05Tax - Inv or Fund_COPT1 liquidation_Project</option>
+                                                            <option value="follow">06Compliance checking_Lippo checking_AdHocOneOff</option>
+                                                            <option value="follow">08Valn Mtg_Valn mtg_Project</option>
+                                                            <option value="follow">09ASM books_2018Q3 Mgt Rpt_Perpetual</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="updateType">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">Start End</option>
+                                                            <option value="invested">More Time Spent Generally</option>
+                                                            <option value="follow">New Dev</option>
+                                                            <option value="follow">Other</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">H</option>
+                                                            <option value="invested">M</option>
+                                                            <option value="follow">L</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4 pr-0">
                                                         <textarea type="text" class="form-control" id="details" rows="1"></textarea>
                                                     </div>
                                                     <div class="col-1 pl-0">
@@ -266,13 +384,34 @@
                                                     <div class="col-1">
                                                         3
                                                     </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control" id="taskName">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">05Deal tax matter_Tax advice_Project</option>
+                                                            <option value="invested">05Tax - Inv or Fund_COPT1 liquidation_Project</option>
+                                                            <option value="follow">06Compliance checking_Lippo checking_AdHocOneOff</option>
+                                                            <option value="follow">08Valn Mtg_Valn mtg_Project</option>
+                                                            <option value="follow">09ASM books_2018Q3 Mgt Rpt_Perpetual</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="updateType">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">Start End</option>
+                                                            <option value="invested">More Time Spent Generally</option>
+                                                            <option value="follow">New Dev</option>
+                                                            <option value="follow">Other</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-2 pr-0">
+                                                        <select class="selectpicker form-control" data-size="5" id="status" name="status" required>
+                                                            <option value="as" selected disabled>&#160;</option>
+                                                            <option value="potential">H</option>
+                                                            <option value="invested">M</option>
+                                                            <option value="follow">L</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4 pr-0">
                                                         <textarea type="text" class="form-control" id="details" rows="1"></textarea>
                                                     </div>
                                                     <div class="col-1 pl-0">
@@ -309,26 +448,26 @@
                                                 <th data-field="task_name" data-width="5%" data-sortable="true" data-filter-control="input">Name</th>
                                                 <th data-field="status" data-width="5%" data-sortable="true" data-filter-control="input">Status</th>
                                                 <th data-field="update_date" data-width="5%" data-sortable="true" data-filter-control="input">Update Date</th>
-                                                <th data-field="update_by" data-width="5%" data-sortable="true" data-filter-control="input">Update By</th>
+                                                <th data-field="update_by" data-width="5%" data-sortable="true" data-filter-control="input">Updated By</th>
                                                 <th data-field="update_details" data-width="5%" data-sortable="true" data-filter-control="input">Update Details</th>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Task A</td>
+                                                    <td>05Deal tax matter_Tax advice_Project</td>
                                                     <td>Performed</td>
                                                     <td>2019-2-1</td>
                                                     <td>Adam Kong</td>
                                                     <td>To prepare W forms/CRS self cert forms for SPVs if it is owned by funds’ entities.</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Task B</td>
+                                                    <td>05Tax - Inv or Fund_COPT1 liquidation_Project</td>
                                                     <td>Performed</td>
                                                     <td>2019-3-1</td>
                                                     <td>Jason Wah</td>
                                                     <td>identification of Lippo related SPV</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Task C</td>
+                                                    <td>06Compliance checking_Lippo checking_AdHocOneOff</td>
                                                     <td>Planned</td>
                                                     <td>2019-3-15</td>
                                                     <td>Sam Mok</td>
