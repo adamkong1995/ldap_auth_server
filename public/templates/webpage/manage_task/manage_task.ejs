@@ -4,32 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!--Bootstrap 4 CSS-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        <!--Bootstrap Table CSS-->
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
-        <!--Bootstrap table extension - filter control-->
-        <link rel="stylesheet" type="text/css" href="/bootstrap_table/bootstrap-table-filter-control.css">
+        <% include partials/common/common_css.ejs %>
         <!--Bootstrap-select css-->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
-        <!-- Sidebar CSS -->
-        <link rel="stylesheet" href="/webpage/sidebar.css">
-        
-        <!--jQuery-->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <!--Popper js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <!--Bootstrap 4 Javascript-->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-        <!--Bootstrap Table-->
-        <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
-        <!--Bootstrap table extension - filter control-->
-        <script src="/bootstrap_table/bootstrap-table-filter-control.js"></script>
-        <!--Bootstrap table extension mobile-->
-        <script src="/bootstrap_table/bootstrap-table-mobile.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
+        <% include partials/common/common_js.ejs %>
         <!--Bootstrap-select js-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
@@ -37,82 +16,10 @@
     <body>
         <div class="wrapper">
             <div id="head">
-                <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar" style="background-color: #cce3f3;">
-                    <div class="container-fluid">
-                        <button type="button" id="sidebarCollapse" class="btn">
-                            <i class="fas fa-align-justify"></i>
-                        </button>
-                        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-align-justify"></i>
-                        </button>
-                        <div class="collapse navbar-collapse ml-2" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav mr-auto">
-
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/"><span>Home<i class="fas fa-angle-right ml-2"></i></span></a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="/"><span>Manage Tasks</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="nav-item dropdown active ml-auto mr-2">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Task Reporting System
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-dark" href="/">Task Reporting System</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-dark" href="http://192.168.0.193:200">Deal Updates Database</a>
-                            </div>
-                        </div>
-                        <span class="nav-item ml-auto">
-                            Logged in as <br><b>Adam Kong</b>
-                        </span>
-                    </div>
-                </nav>
+                <% include partials/common/head_component.ejs %>
             </div>
             <nav id="sidebar">
-                <ul class="list-unstyled components">
-                    <li>
-                        <a href="/" class="text-dark">
-                        <i class="fas fa-clipboard-list"></i>
-                            Manage Tasks
-                        </a>
-                    </li>
-                    <li>
-                        <a href="task_update" class="text-dark">
-                            <i class="fas fa-edit"></i>
-                            Add Update
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="text-dark">
-                            <i class="fas fa-file"></i>
-                             Show Report
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
-                            <i class="fas fa-cog"></i>
-                            Administration
-                        </a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#" class="text-dark">Task Group</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-dark">Sub Group</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-dark">Frequency Type</a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-dark">Update Type</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <% include partials/common/sidebar_component.ejs %>
             </nav>
             <div id="content">
                 <div class="container-fluid">
@@ -227,20 +134,8 @@
                 </div>
             </div>
         </div>
-        <script>
-            // Sidebar initiation
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    // open or close navbar
-                    $('#sidebar, #content').toggleClass('active');
-                    // close dropdowns
-                    $('.collapse.in').toggleClass('in');
-                    // and also adjust aria-expanded attributes we use for the open/closed arrows
-                    // in our CSS
-                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-                });
-            });
-        </script>
+        <% include partials/common/sidebar_init.ejs %>
+        <script src="/manage_task/set_task_name.js"></script>
         <script>
             // Task List bootstrap table initiation
 
@@ -253,17 +148,6 @@
                     data: jsonData
                 });
             });
-        </script>
-        <script>
-            const setTaskName = () => {
-                const taskName = `${document.querySelector('#group').value}${document.querySelector('#subGroup').value}_${document.querySelector('#keywords').value}_${document.querySelector('#frequency').value}`
-                document.querySelector('#taskName').value = taskName;
-            }
-
-            document.querySelector('#group').addEventListener('change', () => setTaskName());
-            document.querySelector('#subGroup').addEventListener('change', () => setTaskName());
-            document.querySelector('#frequency').addEventListener('change', () => setTaskName());
-            document.querySelector('#keywords').addEventListener('input', () => setTaskName());
         </script>
     </body>
 </html>
