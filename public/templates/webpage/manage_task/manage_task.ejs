@@ -17,10 +17,10 @@
         <div class="wrapper">
             <div id="head">
                 <% include partials/common/head_component_upper.ejs %>
-                <span class="nav-item active">
+                <span class="nav-item active d-none d-md-block">
                     <a class="nav-link text-dark pr-0" href="/">Home<i class="fas fa-angle-right ml-2"></i></a>
                 </span>
-                <span class="nav-item active">
+                <span class="nav-item active mr-auto">
                     <a class="nav-link text-dark" href="/">Manage Tasks</a>
                 </span>
                 <% include partials/common/head_component_lower.ejs %>
@@ -39,22 +39,13 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-4 pr-0">
-                                            Name (System created)
-                                        </div>
-                                        <div class="col-4 pr-0">
-                                            Group
-                                        </div>
-                                        <div class="col-4">
-                                            Sub Group
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-4 pr-0">
+                                            <label for='taskName'>Name (System created)</label>
                                             <textarea id='taskName' type="text" class="form-control" rows="1" disabled></textarea>
                                         </div>
                                         <div class="col-4 pr-0">
+                                            <label for='group'>Group</label>
                                             <select class="selectpicker form-control" data-size="5" id="group" required>
-                                                <option value="" selected disabled>&#160;</option>
+                                                <option selected disabled style="display:none;">&#160;</option>
                                                 <option value="01">01 Business Development</option>
                                                 <option value="02">02 Research/Dealing</option>
                                                 <option value="03">03 Fund/Portfolio reporting and financing</option>
@@ -68,8 +59,9 @@
                                             </select>
                                         </div>
                                         <div class="col-4">
+                                            <label for='subGroup'>Sub Group</label>
                                             <select class="selectpicker form-control" data-size="5" id="subGroup" required>
-                                                <option value="" selected disabled>&#160;</option>
+                                                <option selected disabled style="display:none;">&#160;</option>
                                                 <option value="ASM books">ASM books</option>
                                                 <option value="Compliance checking">Compliance checking</option>
                                                 <option value="Deal Tax Matter">Deal Tax Matter</option>
@@ -80,19 +72,9 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-4 pr-0">
-                                            Frequency
-                                        </div>
-                                        <div class="col-4 pr-0">
-                                            Keyword
-                                        </div>
-                                        <div class="col-4">
-                                            Description
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-4 pr-0">
+                                            <label for='frequency'>Frequency</label>
                                             <select class="selectpicker form-control" data-size="5" id="frequency" required>
-                                                <option value="" selected disabled>&#160;</option>
+                                                <option selected disabled style="display:none;">&#160;</option>
                                                 <option value="Perpetual">Perpetual</option>
                                                 <option value="Periodic">Periodic</option>
                                                 <option value="Project">Project</option>
@@ -100,9 +82,11 @@
                                             </select>
                                         </div>
                                         <div class="col-4 pr-0">
+                                            <label for='keywords'>Keywords</label>
                                             <input id="keywords" type="text" class="form-control">
                                         </div>
                                         <div class="col-4">
+                                            <label for='description'>Description</label>
                                             <input id="description" type="text" class="form-control">
                                         </div>
                                     </div>
@@ -121,7 +105,7 @@
                                 <h6 class="card-header" style="background-color: rgba(16, 0, 196, 0.2);">
                                     Task List
                                 </h6>
-                                <div class="card-body">
+                                <div class="card-body p-0">
                                     <table class="table table-hover table-sm" id="taskList" data-sortable="true" data-filter-control="true">
                                         <thead>
                                             <tr>
@@ -141,8 +125,8 @@
                 </div>
             </div>
         </div>
-        <% include partials/common/sidebar_init.ejs %>
         <script src="/manage_task/set_task_name.js"></script>
         <script src="/manage_task/bs_table_init.js"></script>
+        <script src="/common/sidebar_init.js"></script>
     </body>
 </html>
