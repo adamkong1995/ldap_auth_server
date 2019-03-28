@@ -16,7 +16,14 @@
     <body>
         <div class="wrapper">
             <div id="head">
-                <% include partials/common/head_component.ejs %>
+                <% include partials/common/head_component_upper.ejs %>
+                <span class="nav-item active">
+                    <a class="nav-link text-dark pr-0" href="/">Home<i class="fas fa-angle-right ml-2"></i></a>
+                </span>
+                <span class="nav-item active">
+                    <a class="nav-link text-dark" href="/">Manage Tasks</a>
+                </span>
+                <% include partials/common/head_component_lower.ejs %>
             </div>
             <nav id="sidebar">
                 <% include partials/common/sidebar_component.ejs %>
