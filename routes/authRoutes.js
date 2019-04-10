@@ -16,10 +16,8 @@ module.exports = app => {
             </body>
         </html>`)
     })
-    
-    app.post('/auth/ldap',  passport.authenticate('ldapauth', {session:false},
-        (req, res) => console.log(res))
-    );
+
+    app.post('/auth/ldap',  passport.authenticate('ldapauth', {session:true, successRedirect: '/auth/success', failureRedirect: '/auth/fail'}));
 
     app.get('/api/logout', (req, res) => {
         req.logout();

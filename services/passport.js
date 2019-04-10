@@ -1,17 +1,21 @@
 const passport = require('passport');
 const LdapStrategy = require('passport-ldapauth').Strategy;
-const Sequelize = require('sequelize');
+const sequelize = require('./sequelize');
+const Users = sequelize.models.users;
 
 require('dotenv').config();
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
     console.log('serializeUser');
-    done(null, user);
+    done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser((id, done) => {
     console.log('deserializeUser');
-    done(null, user);
+    Users.findByPk(id)
+        .then(user => {
+            done(null, user);
+        });
 });
 
 passport.use(new LdapStrategy({
@@ -19,10 +23,19 @@ passport.use(new LdapStrategy({
         url: process.env.LDAP_URL,
         bindDN: process.env.LDAP_USER,
         bindCredentials: process.env.LDAP_PASSWORD,
-        searchBase: 'cn=users,dc=asmhk,DC=local',
-        searchFilter: '(sAMAccountName={{username}})'
+        searchBase: process.env.LDAP_SEARCHBASE,
+        searchFilter: process.env.LDAP_SEARCHFILTER
     }
     }, (user, done) => {
-        console.log(user.dn);
+        Users.findOne({where: {user_dn: user.dn}})
+            .then(existingUser => {
+                if (existingUser) {
+                    done(null, existingUser);
+                } else {
+                    new Users({user_dn: user.dn})
+                    .save()
+                    .then(user => done(null, user));
+                }
+            })
     })
 );

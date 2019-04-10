@@ -1,14 +1,12 @@
 const express = require('express');
-const Sequelize = require('sequelize');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
-require('./services/passport');
-require('dotenv').config();
-
-const sequelize = new Sequelize(process.env.Postgres_URL);
+const sequelize = require('./services/sequelize');
 require('./models/Users')(sequelize);
+
+require('./services/passport');
 
 const app = express();
 
@@ -26,8 +24,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-const User = sequelize.models.users;
-console.log(`${User}`);
 
 require('./routes/authRoutes')(app);
 
