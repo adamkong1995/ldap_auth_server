@@ -6,12 +6,10 @@ const Users = sequelize.models.users;
 require('dotenv').config();
 
 passport.serializeUser((user, done) => {
-    console.log('serializeUser');
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-    console.log('deserializeUser');
     Users.findByPk(id)
         .then(user => {
             done(null, user);
