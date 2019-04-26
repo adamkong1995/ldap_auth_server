@@ -6,10 +6,12 @@ const Users = sequelize.models.users;
 require('dotenv').config();
 
 passport.serializeUser((user, done) => {
+    console.log('serialize user')
     done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
+    console.log('deserialize user')
     Users.findByPk(id)
         .then(user => {
             done(null, user);
@@ -30,7 +32,7 @@ passport.use(new LdapStrategy({
                 if (existingUser) {
                     done(null, existingUser);
                 } else {
-                    new Users({user_dn: user.dn})
+                    new Users({user_dn: user.dn, user_name: user.name, user_email: user.mail})
                     .save()
                     .then(user => done(null, user));
                 }

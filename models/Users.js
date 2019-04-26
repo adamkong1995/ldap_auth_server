@@ -6,6 +6,13 @@ module.exports = sequelize => {
         user_dn: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        user_name: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        user_email: {
+            type: Sequelize.STRING
         }
     }, {
         sequelize,

@@ -3,6 +3,7 @@ const passport = require('passport');
 
 module.exports = app => {
     app.get('/auth/ldap', (req, res) => {
+        console.log(req.headers.referer)
         res.send(`<!DOCTYPE html>
         <html>
             <head>
@@ -17,7 +18,17 @@ module.exports = app => {
         </html>`)
     })
 
-    app.post('/auth/ldap',  passport.authenticate('ldapauth', {session:true, successRedirect: '/auth/success', failureRedirect: '/auth/fail'}));
+    // app.post('/auth/ldap', passport.authenticate('ldapauth', {session:true, successRedirect: '/auth/success', failureRedirect: '/auth/fail'}));
+
+
+    app.post('/auth/ldap', passport.authenticate('ldapauth', {session:true}), (req, res) => {
+        console.log({
+            status: 'ok',
+            user: req.user
+        })
+        res.json({user: req.user});
+    });
+
 
     app.get('/api/logout', (req, res) => {
         req.logout();
@@ -25,6 +36,6 @@ module.exports = app => {
     });
 
     app.get('/api/current_user', (req, res) => {
-        res.send(req.user);
+        res.json({user: req.user});
     });
 }
