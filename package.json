@@ -17,6 +17,6 @@
     "passport-ldapauth": "^2.1.2",
     "pg": "^7.8.2",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^5.1.0"
+    "sequelize": "^5.8.5"
   }
 }

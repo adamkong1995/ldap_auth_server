@@ -18,6 +18,6 @@ It is a api server that support authentication using Windows Ldap/AD.
     - LDAP_PASSWORD --> Password of that account
     - LDAP_SEARCHBASE --> Ldap query for verifying user account
     - LDAP_SEARCHFILTER --> Field to match the username input by user
+        - Details of ldap params: https://github.com/vesse/passport-ldapauth
 3. `npm install`
 
-## Package used
