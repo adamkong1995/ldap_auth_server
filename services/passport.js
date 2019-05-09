@@ -10,6 +10,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
+    console.log(id, 'deserialize')
     Users.findByPk(id)
         .then(user => {
             done(null, user);

@@ -22,10 +22,6 @@ module.exports = app => {
 
 
     app.post('/auth/ldap', passport.authenticate('ldapauth', {session:true}), (req, res) => {
-        console.log({
-            status: 'ok',
-            user: req.user
-        })
         res.json({user: req.user});
     });
 
@@ -36,6 +32,7 @@ module.exports = app => {
     });
 
     app.get('/api/current_user', (req, res) => {
+        console.log(req, 'New Request ---------------------------')
         res.json({user: req.user});
     });
 }
